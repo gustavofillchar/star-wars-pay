@@ -2,6 +2,8 @@ import FeedCharacters from "@/app/components/FeedCharacters/feed-characters-list
 import api from "./services/api";
 import { CharacterType } from "@/app/types/character-types";
 import Header from "./components/Header/header";
+import Nav from "./components/Nav/navbar";
+import { PeopleProvider } from "./contexts/PlanetsFilterContext";
 
 type PeopleResponse = {
   results: CharacterType[]
@@ -19,7 +21,10 @@ export default async function Home() {
         description="Explore the Star Wars universe through our comprehensive character directory. Discover detailed profiles of all your favorite characters from the iconic saga, including heroes, villains, and everyone in between."
       />
  
-      <FeedCharacters initialPeople={people} />
+      <PeopleProvider>
+        <Nav />
+        <FeedCharacters initialPeople={people} />
+      </PeopleProvider>
 
     </main>
   );
