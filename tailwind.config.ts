@@ -18,7 +18,8 @@ const config: Config = {
           DEFAULT: '#002B53'
         },
         'gray-gravity': {
-          DEFAULT: '#333333'
+          500: '#333333',
+          300: '#666666'
         }
       },
     },
