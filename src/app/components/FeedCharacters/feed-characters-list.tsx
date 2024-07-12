@@ -1,17 +1,27 @@
-'use client';
+'use client'
 
-import { useState } from "react";
-import { CharacterType } from "@/app/types/character-types";
-import CharacterCard from "../CharacterCard/character-card";
-import api from "@/app/services/api";
+import { useState } from "react"
+import { CharacterType } from "@/app/types/character-types"
+import CharacterCard from "../CharacterCard/character-card"
+import api from "@/app/services/api"
+import Button from "../Button/button"
+
+type PeopleResponse = {
+    next: string;
+    results: CharacterType[];
+}
 
 export default function FeedCharacters({ initialPeople }: any) {
-    const [people, setPeople] = useState(initialPeople);
-    const [page, setPage] = useState(initialPeople.next);
+    const [people, setPeople] = useState(initialPeople)
+    const [page, setPage] = useState(initialPeople.next)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const loadMore = async () => {
+        setIsLoading(true)
         const nextPage = page;
-        const newPeople = await api.get<any>(`${nextPage}`);
+        const newPeople = await api.get<PeopleResponse>(`${nextPage}`).finally(() => {
+            setIsLoading(false)
+        })
 
         setPeople({
             ...newPeople.data,
@@ -19,14 +29,15 @@ export default function FeedCharacters({ initialPeople }: any) {
         });
 
         setPage(newPeople.data.next ? newPeople.data.next : null);
+
+
     };
 
     return (
-        <>
-            <span>Exibindo {people.results.length} de {people.count}</span>
-
-            <section className="flex flex-wrap gap-6">
-
+        <section className="mx-[50px] my-[50px] max-w-[1820px] min-[1920px]:mx-auto">
+            <h4 className="text-[20px] font-light text-gray-gravity-500 mb-[50px]">All Characters</h4>
+           
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-[1920px]:grid-cols-5 gap-x-[30px] gap-y-0">
                 {people.results.map((character: CharacterType, index: number) => (
                     <CharacterCard
                         key={`key-${index}`}
@@ -37,9 +48,12 @@ export default function FeedCharacters({ initialPeople }: any) {
                         gender={character.gender}
                     />
                 ))}
+            </div>
 
-            </section>
-            <button disabled={!page} onClick={loadMore} className="mt-4 p-2 bg-blue-500 text-white rounded">Load More</button>
-        </>
-    );
+            <div className="w-full flex justify-center">
+                <Button disabled={!page || isLoading} click={loadMore}>{isLoading ? 'Loading...' :'Load more'}</Button>
+            </div>
+
+        </section>
+    )
 }

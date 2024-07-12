@@ -1,19 +1,21 @@
-import React from 'react';
+import React from 'react'
 
 type ButtonType = {
   children?: string;
-  click?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  click?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?:boolean
 };
 
-const Button: React.FC<ButtonType> = ({ children, click }) => {
+const Button: React.FC<ButtonType> = ({ children, click, disabled }) => {
   return (
     <button
-      className="uppercase border h-[48px] px-[200px] text-sm border-blue-gravity text-blue-gravity hover:bg-blue-gravity hover:text-white transition duration-100"
+      className="uppercase border h-[48px] px-[200px] text-sm border-blue-gravity text-blue-gravity disabled:text-gray-300 disabled:border-0 disabled:bg-gray-100 hover:bg-blue-gravity hover:text-white transition-all duration-500"
       onClick={click}
+      disabled={disabled}
     >
       {children}
     </button>
-  );
-};
+  )
+}
 
 export default Button

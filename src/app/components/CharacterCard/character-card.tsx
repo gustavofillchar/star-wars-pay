@@ -20,7 +20,7 @@ function CharacterCard({ name, height, mass, hair_color, skin_color, eye_color, 
 
   useEffect(() => {
     if (!planet) {
-      const fetchData = async () => {        
+      const fetchData = async () => {
         const planetData = await fetchPlanet()
         setPlanet(planetData.name)
       }
@@ -29,19 +29,21 @@ function CharacterCard({ name, height, mass, hair_color, skin_color, eye_color, 
   }, [homeworld, planet])
 
   return (
-    <div className=''>
-      <img src='https://picsum.photos/400/250' className='bg-slate-200' height={250} width={400} alt={`Picture of ${name}`} />
-
-      <h3>{name}</h3>
-
-      <h6>{planet}</h6>
-
-      <div className='uppercase flex flex-col'>
-        <span>Height: {height}</span>
-        <span>Mass: {mass}</span>
-        <span>Gender: {gender}</span>
+    <article className='w-full flex sm:flex-col pb-[46px] sm:pb-[110px] group'>
+      <img src={`https://picsum.photos/432/230?random=${name}${homeworld}`} className='bg-slate-200 mr-[12px] sm:m-0 w-[115px] h-[130px] object-cover object-center sm:w-full sm:h-[230px] sm:group-hover:grayscale transition-all duration-500' alt={`Picture of ${name}`} />
+      
+      <div className='sm:mt-[16px]'>
+        <h3 className='font-normal text-black text-[20px] leading-7'>{name}</h3>
+        <h6 className='text-black leading-7 text-[15px]'>{planet}</h6>
       </div>
-    </div>
+
+      <div className='uppercase leading-4	sm:flex sm:flex-col hidden text-gray-gravity-200 text-[12px] mt-[13px]'>
+        <span>Height • {height}</span>
+        <span>Mass: • {mass}</span>
+        <span>Gender: • {gender}</span>
+      </div>
+
+    </article>
   );
 };
 
