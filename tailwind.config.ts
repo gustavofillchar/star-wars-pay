@@ -16,6 +16,9 @@ const config: Config = {
       colors: {
         'blue-gravity': {
           DEFAULT: '#002B53'
+        },
+        'gray-gravity': {
+          DEFAULT: '#333333'
         }
       },
     },
