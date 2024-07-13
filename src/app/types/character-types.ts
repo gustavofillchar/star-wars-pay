@@ -8,4 +8,5 @@ export type CharacterType = {
     birth_year?: string;
     gender?: string;
     homeworld?: string;
+    homeworldFilterSelected?: string;
 }

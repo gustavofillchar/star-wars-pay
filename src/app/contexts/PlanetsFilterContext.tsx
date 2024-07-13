@@ -3,27 +3,24 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { CharacterType } from "@/app/types/character-types";
 
-type PeopleContextType = {
-  people: CharacterType[] | any;
-  setPeople: any;
+type PlanetContextType = {
   setFilter: (homeworld: string) => void;
   filter?: string,
   isLoading?: boolean,
   setIsLoadingContext?: React.Dispatch<React.SetStateAction<boolean>>
 };
 
-export const PeopleContext = createContext<PeopleContextType | undefined>(undefined);
+export const PlanetContext = createContext<PlanetContextType | undefined>(undefined);
 
-export const usePeople = () => {
-  const context = useContext(PeopleContext);
+export const useFilterPlanet = () => {
+  const context = useContext(PlanetContext);
   if (!context) {
-    throw new Error("usePeople must be used within a PeopleProvider");
+    throw new Error("usePeople must be used within a PlanetContextProvider");
   }
   return context;
 };
 
-export const PeopleProvider = ({ children }: { children: ReactNode }) => {
-  const [people, setPeople] = useState<CharacterType[]>([]); 
+export const PlanetContextProvider = ({ children }: { children: ReactNode }) => {
   const [filter, setFilterState] = useState<string>('');
   const [isLoading, setIsLoadingContext] = useState<boolean>(true);
  
@@ -32,8 +29,8 @@ export const PeopleProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <PeopleContext.Provider value={{ people, setPeople, setFilter, filter, isLoading, setIsLoadingContext }}>
+    <PlanetContext.Provider value={{ setFilter, filter, isLoading, setIsLoadingContext }}>
       {children}
-    </PeopleContext.Provider>
+    </PlanetContext.Provider>
   );
 };

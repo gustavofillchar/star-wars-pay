@@ -5,7 +5,7 @@ import { CharacterType } from '@/app/types/character-types'
 import { Planet } from '@/app/types/planet-types'
 import React, { useEffect, useState } from 'react'
 
-function CharacterCard({ name, height, mass, hair_color, skin_color, eye_color, birth_year, gender, homeworld }: CharacterType) {
+function CharacterCard({ name, height, mass, homeworldFilterSelected, skin_color, eye_color, birth_year, gender, homeworld }: CharacterType) {
 
   const [planet, setPlanet] = useState<string | undefined>(undefined)
 
@@ -28,22 +28,26 @@ function CharacterCard({ name, height, mass, hair_color, skin_color, eye_color, 
     }
   }, [homeworld, planet])
 
+  const showCharacter = homeworldFilterSelected ? (homeworld === homeworldFilterSelected) : true
+
   return (
-    <article className='w-full flex sm:flex-col pb-[46px] sm:pb-[110px] group'>
-      <img src={`https://picsum.photos/432/230?random=${name}${homeworld}`} className='bg-slate-200 mr-[12px] sm:m-0 w-[115px] h-[130px] object-cover object-center sm:w-full sm:h-[230px] sm:group-hover:grayscale transition-all duration-500' alt={`Picture of ${name}`} />
-      
-      <div className='sm:mt-[16px]'>
-        <h3 className='font-normal text-black text-[20px] leading-7'>{name}</h3>
-        <h6 className='text-black leading-7 text-[15px]'>{planet}</h6>
-      </div>
+    <>
+      <article className={`w-full flex sm:flex-col pb-[46px] sm:pb-[110px] group ${showCharacter ? 'flex' : 'hidden'}`}>
+        <img src={`https://picsum.photos/432/230?random=${name}${homeworld}`} className='bg-slate-200 mr-[12px] sm:m-0 w-[115px] h-[130px] object-cover object-center sm:w-full sm:h-[230px] sm:group-hover:grayscale transition-all duration-500' alt={`Picture of ${name}`} />
 
-      <div className='uppercase leading-4	sm:flex sm:flex-col hidden text-gray-gravity-200 text-[12px] mt-[13px]'>
-        <span>Height • {height}</span>
-        <span>Mass: • {mass}</span>
-        <span>Gender: • {gender}</span>
-      </div>
+        <div className='sm:mt-[16px]'>
+          <h3 className='font-normal text-black text-[20px] leading-7'>{name}</h3>
+          <h6 className='text-black leading-7 text-[15px]'>{planet}</h6>
+        </div>
 
-    </article>
+        <div className='uppercase leading-4	sm:flex sm:flex-col hidden text-gray-gravity-200 text-[12px] mt-[13px]'>
+          <span>Height • {height}</span>
+          <span>Mass: • {mass}</span>
+          <span>Gender: • {gender}</span>
+        </div>
+
+      </article>
+    </>
   );
 };
 
