@@ -35,21 +35,20 @@ export default function FeedCharacters({ initialPeople }: any) {
 
     const characters = peopleList.results
 
+    const resultsByFilter = filter ? characters.filter((character: CharacterType) => character.homeworld === filter) : characters
+
     function EmptyList() {
-        const results = filter ? characters.filter((character: CharacterType) => character.homeworld === filter) : characters
-        if (results.length === 0) {
-            return (
-                <div className="text-gray-400 pb-12">
-                    <p>There are no characters loaded from the selected homeworld.</p>
-                </div>
-            )
-        }
+        if (!resultsByFilter.length) return  <p className="text-gray-400 pb-12">There are no characters loaded from the selected homeworld.</p>        
+    }
+
+    function Title() {
+        if (resultsByFilter.length) return <h4 className="text-[32px] sm:text-[34px] font-light text-gray-gravity-500 mb-[43px]">All Characters</h4>
     }
 
     return (
-        <section className="px-[25px] sm:px-[50px] mt-[28px] sm:my-[50px] max-w-[1820px] min-[1920px]:mx-auto min-[1920px]:px-0">
+        <section className="px-[25px] sm:px-[50px] mb-50 mt-[28px] sm:my-[50px] max-w-[1820px] min-[1920px]:mx-auto min-[1920px]:px-0">
 
-            <h4 className="text-[32px] sm:text-[34px] font-light text-gray-gravity-500 mb-[43px]">All Characters</h4>
+            <Title />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-[1920px]:grid-cols-5 gap-x-[30px] gap-y-0">
                 {characters && characters.map((character: CharacterType, index: number) => (
@@ -67,7 +66,7 @@ export default function FeedCharacters({ initialPeople }: any) {
 
             <EmptyList />
 
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center items-center flex-col">                          
                 <Button disabled={!page || isLoading} click={loadMore}>{isLoading ? 'Loading...' : 'Load more'}</Button>
             </div>
 
