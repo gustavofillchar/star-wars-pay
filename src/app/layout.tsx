@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import localFont from 'next/font/local'
+ 
+const helvetica = localFont({
+  src: [
+    {
+      path: '../../public/fonts/HelveticaNeueLight.otf',
+      weight: '300'
+    },
+    {
+      path: '../../public/fonts/HelveticaNeueRoman.otf',
+      weight: '400'
+    },    
+  ],
+  variable: '--font-helvetica'
+})
 
 export const metadata: Metadata = {
   title: "Star Wars Pay",
@@ -16,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${helvetica.variable} font-sans`}>{children}</body>
     </html>
   );
 }

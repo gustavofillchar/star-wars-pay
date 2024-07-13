@@ -2,10 +2,9 @@
 
 import api from '@/app/services/api'
 import { CharacterType } from '@/app/types/character-types'
-import { Planet } from '@/app/types/planet-types'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-function CharacterCard({ name, height, mass, homeworldFilterSelected, skin_color, eye_color, birth_year, gender, homeworld }: CharacterType) {
+function CharacterCard({ name, height, mass, homeworldFilterSelected, gender, homeworld }: CharacterType) {
 
   const [planet, setPlanet] = useState<string | undefined>(undefined)
 
@@ -36,11 +35,11 @@ function CharacterCard({ name, height, mass, homeworldFilterSelected, skin_color
         <img src={`https://picsum.photos/432/230?random=${name}${homeworld}`} className='bg-slate-200 mr-[12px] sm:m-0 w-[115px] h-[130px] object-cover object-center sm:w-full sm:h-[230px] sm:group-hover:grayscale transition-all duration-500' alt={`Picture of ${name}`} />
 
         <div className='sm:mt-[16px]'>
-          <h3 className='font-normal text-black text-[20px] leading-7'>{name}</h3>
-          <h6 className='text-black leading-7 text-[15px]'>{planet}</h6>
+          <h3 className='font-normal text-black text-[20px] leading-7 tracking-[1px]'>{name}</h3>
+          <h6 className='text-black leading-7 text-[15px] tracking-[1px]'>{planet ? planet : '•'}</h6>
         </div>
 
-        <div className='uppercase leading-4	sm:flex sm:flex-col hidden text-gray-gravity-200 text-[12px] mt-[13px]'>
+        <div className='uppercase leading-4	sm:flex sm:flex-col hidden tracking-[0.5px] text-gray-gravity-200 text-[12px] mt-[13px]'>
           <span>Height • {height}</span>
           <span>Mass: • {mass}</span>
           <span>Gender: • {gender}</span>

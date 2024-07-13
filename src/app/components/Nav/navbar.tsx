@@ -27,8 +27,10 @@ export default async function Nav() {
     const allPlanets = await fetchAllPlanets('https://swapi.dev/api/planets');
   
     return (
-        <nav className="py-[26px] px-[50px] border-b max-w-[1820px] min-[1920px]:mx-auto min-[1920px]:px-0">
+        <nav className="sm:border-b">
+            <div className="py-[16px] sm:py-[26px] px-[25px] sm:px-[50px] max-w-[1820px] min-[1920px]:mx-auto min-[1920px]:px-0">
             <FilterList planets={allPlanets} />
+            </div>
         </nav>
     )
 }

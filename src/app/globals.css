@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 .filter-nav-select {
-  @apply appearance-none select-none text-blue-gravity-400 rounded-none px-0 outline-none pb-[6px] border-b w-[190px] text-[16px] border-gray-gravity-50;
+  @apply appearance-none select-none text-blue-gravity-400 rounded-none px-0 outline-none pb-[6px] border-b flex-1 sm:flex-none sm:w-[190px] text-[16px] border-gray-gravity-50;
   background-image: url("/icons/select-arrow-down.svg");
   background-repeat: no-repeat;
   background-position: right center;
   background-size: 8.5px;
   overflow: visible;
+  background-color: transparent;
 }
 
 .filter-nav-select::-ms-expand {
