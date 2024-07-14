@@ -1,25 +1,31 @@
-This project was developed to showcase frontend development skills. It utilizes a public Star Wars API [`(swapi.dev)`](https://swapi.dev/) that returns planets and characters. 
+This project was developed to showcase frontend development skills. It utilizes the public Star Wars API [`swapi.dev`](https://swapi.dev/) to retrieve data on planets and characters.
 
-This project was developed using React (Next.js) and styled with Tailwind CSS. I employed a unit testing approach with Jest and Testing Library to validate the functionality of the app's core components and features.
+Built with React (Next.js) and styled using Tailwind CSS, the project employs unit testing with Jest and Testing Library to validate core component functionality and features.
 
-Check the ['online demo`](https://star-wars-pay.vercel.app/).
+Explore the [online demo](https://star-wars-pay.vercel.app/).
 
 ## Development server:
 
-First, run the development server:
+To get started, install dependencies:
+
+```bash
+npm i
+# or
+yarn install
+```
+
+Launch the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
 
-## Deployed on Vercel
+## Demo
  
-Check out our [demo version](https://star-wars-pay.vercel.app/).
+Visit our [live demo](https://star-wars-pay.vercel.app/).
 
-May the force be with you :)
+_May the Force be with you!_ :)
 
 Thanks!
