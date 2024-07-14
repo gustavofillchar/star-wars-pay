@@ -42,7 +42,7 @@ export default function FeedCharacters({ initialPeople }: any) {
     }
 
     function Title() {
-        if (resultsByFilter.length) return <h4 className="text-[32px] sm:text-[34px] font-light text-gray-gravity-500 mb-[43px]">All Characters</h4>
+        if (resultsByFilter.length && !filter) return <h4 className="text-[32px] sm:text-[34px] font-light text-gray-gravity-500 mb-[43px]">All Characters</h4>
     }
 
     return (
