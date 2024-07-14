@@ -46,7 +46,7 @@ export default function FeedCharacters({ initialPeople }: any) {
     }
 
     return (
-        <section className="px-[25px] sm:px-[50px] mb-50 mt-[28px] sm:my-[50px] max-w-[1820px] min-[1920px]:mx-auto min-[1920px]:px-0">
+        <section className="px-[25px] sm:px-[50px] mt-[28px] mb-[50px] sm:my-[50px] max-w-[1820px] min-[1920px]:mx-auto min-[1920px]:px-0">
 
             <Title />
 
